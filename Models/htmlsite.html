@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+	<html>
+		<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+			<title>Test Database</title>
+			<style>
+				button {
+					font-family: serif;
+					font-size:20px;
+					border-radius: 10px;
+					border: none;
+					color:white;
+					padding: 8px 48px;}
+				
+					
+				.green { background: #73A353; }
+				.cyan { background: #00bfff; }
+				.blue { background: #0000FF; }
+				.red { background: #FF0000; }
+				.right { position: absolute;
+						 top: -5px;
+						 left: 1234px; }
+			</style>
+		</head>
+		<body>
+		<h1>DNS (P0IZON) STOCK</h1>
+		<div>
+			<button type="button" class="green right" style="position: relative" onclick="document.location='/base/create'">Create new product</button>
+			<table border=1 style="border-collapse: collapse">
+				<tr border=1>
+					<th style="padding: 15px 24px;">№</th>
+					<th style="padding: 15px 96px;">Name</th>
+					<th style="padding: 15px 192px;">In stock</th>
+					<th style="padding: 15px 144px;">Date</th>
+					<th style="padding: 15px 144px;">Action</th>
+				</tr>
+				{% for prod in productList %}
+				<tr align="center">
+					<td>{{ prod[0] }}</td>
+					<td>{{ prod[1] }}</td>
+					{% if prod[2] %}
+						<td>In stock</td>
+					{% else %}
+						<td>Not in stock</td>
+					{% endif %}
+					<td>{{ prod[3] }}</td>
+					<td><button class="cyan" style="width: 180px; margin: 10px" onclick="document.location='/base/{{prod[0]}}/edit'">Edit</button>
+						<button class="red" style="width: 180px; margin: 10px" onclick="document.location='/base/{{prod[0]}}/delete'">Delete</button></td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+		</body>
